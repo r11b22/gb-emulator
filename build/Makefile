@@ -129,6 +129,30 @@ gb-emulator/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/build
 .PHONY : gb-emulator/fast
 
+fileio.o: fileio.c.o
+.PHONY : fileio.o
+
+# target to build an object file
+fileio.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/fileio.c.o
+.PHONY : fileio.c.o
+
+fileio.i: fileio.c.i
+.PHONY : fileio.i
+
+# target to preprocess a source file
+fileio.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/fileio.c.i
+.PHONY : fileio.c.i
+
+fileio.s: fileio.c.s
+.PHONY : fileio.s
+
+# target to generate assembly for a file
+fileio.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/fileio.c.s
+.PHONY : fileio.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... gb-emulator"
+	@echo "... fileio.o"
+	@echo "... fileio.i"
+	@echo "... fileio.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

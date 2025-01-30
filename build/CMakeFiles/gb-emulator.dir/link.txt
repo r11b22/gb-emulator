@@ -1,1 +1,1 @@
-/usr/bin/cc -g "CMakeFiles/gb-emulator.dir/main.c.o" -o gb-emulator 
+/usr/bin/cc -g "CMakeFiles/gb-emulator.dir/main.c.o" "CMakeFiles/gb-emulator.dir/fileio.c.o" -o gb-emulator 
