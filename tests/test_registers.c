@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../registers.h"
+#include "../cpu/registers.h"
 
 
 int main()

@@ -1,5 +1,5 @@
-#include "../alu.h"
-#include "../registers.h"
+#include "../cpu/alu.h"
+#include "../cpu/registers.h"
 #include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>

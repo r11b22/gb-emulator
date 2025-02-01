@@ -18,6 +18,23 @@ Micro instructions are directly implemented in c
 
 
 ## micro instructions 
-### ADD(target) (alu.c alu.h)
-adds the registers A and traget into target
 
+### ALU (alu.c alu.h)
+#### ADD target
+adds the registers A and traget into A
+#### ADC target
+adds the regsiters A, target and carry into A
+
+### CU (cu.c cu.h)
+#### INC
+increments the program counter
+#### JMP
+add a specific amount to the program counter
+
+
+## instruction translation (translator.c translator.h)
+translates each instruction into micro instructions and executes them
+there are 3 types of instructions
+1 len
+2 len
+3 len

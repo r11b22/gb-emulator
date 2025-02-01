@@ -1,3 +1,3 @@
-gcc -o test test_alu.c ../registers.c ../registers.h ../alu.h ../alu.c;
+gcc -o test test_alu.c ../cpu/registers.c ../cpu/registers.h ../cpu/alu.h ../cpu/alu.c
 
 ./test
