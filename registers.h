@@ -3,8 +3,22 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #define REG_AMOUNT 8
+
+
+
+
+struct reg_flags{
+    bool zero;
+    bool subraction;
+    bool half_carry;
+    bool carry;
+};
+
+
+
 
 /*
  * intitializes the register array and returns its pointer
@@ -12,6 +26,38 @@
  * (needs free)
  */
 uint8_t* reg_init();
+
+
+/*
+ * sets the flags in flag register f (zshc0000)
+ */
+void set_flags(struct reg_flags flags, uint8_t* registers);
+
+
+/*
+ * sets the zero flag 
+ */
+void set_zero(bool flag, uint8_t* registers);
+
+/*
+ * sets the zero flag 
+ */
+void set_subtract(bool flag, uint8_t* registers);
+
+/*
+ * sets the zero flag 
+ */
+void set_half_carry(bool flag, uint8_t* registers);
+
+/*
+ * sets the zero flag 
+ */
+void set_carry(bool flag, uint8_t* registers);
+
+/*
+ * gets the flags in flag register f (zshc0000)
+ */
+struct reg_flags get_flags(uint8_t* registers);
 
 /*
  * gets the current value in the given register

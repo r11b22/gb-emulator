@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
+#define BOOL_TO_INT(x) ((x) == true ? 1 : 0)
+#define INT_TO_BOOL(x) ((x) == 1)
 
 /*
  * the gameboy has the following registers:
@@ -42,6 +43,105 @@ uint8_t* reg_init()
     return reg_list;
 }
 
+
+/*
+ * flags are stored in the upper 4 bits of register f
+ */
+void set_flags(struct reg_flags flags, uint8_t *registers)
+{
+    // calculate flag values individually
+    uint8_t zero = (BOOL_TO_INT(flags.zero) << 7) & 0b10000000;
+    uint8_t subtraction = (BOOL_TO_INT(flags.subraction) << 6) & 0b01000000;
+    uint8_t half_carry = (BOOL_TO_INT(flags.half_carry) << 5) & 0b00100000;
+    uint8_t carry = (BOOL_TO_INT(flags.carry) << 4) & 0b00010000;
+
+    // combine all flags
+    uint8_t value = zero | subtraction | half_carry | carry;
+    reg_store(value, 5, registers);
+}
+
+void set_zero(bool flag, uint8_t* registers)
+{
+    uint8_t flags = registers[5];
+
+    uint8_t zero = (BOOL_TO_INT(flag) << 7) & 0b10000000;
+
+    printf("%#x\n", zero);
+
+    // put the zero bit to 0 so we can overwrite it
+    flags &= 0b01110000;
+
+    // set the zero bit
+    flags |= zero;
+
+    reg_store(flags, 5, registers);
+}
+
+
+void set_subtract(bool flag, uint8_t* registers)
+{
+    uint8_t flags = registers[5];
+ 
+    uint8_t subtract = (BOOL_TO_INT(flag) << 6) & 0b01000000;
+
+    // put the zero bit to 0 so we can overwrite it
+    flags &= 0b10110000;
+
+    // set the zero bit
+    flags |= subtract;
+
+    reg_store(flags, 5, registers);
+}
+
+
+void set_half_carry(bool flag, uint8_t* registers)
+{
+    uint8_t flags = registers[5];
+ 
+    uint8_t half_carry = (BOOL_TO_INT(flag) << 5) & 0b00100000;
+
+    // put the zero bit to 0 so we can overwrite it
+    flags &= 0b11010000;
+
+    // set the zero bit
+    flags |= half_carry;
+
+    reg_store(flags, 5, registers);
+}
+
+
+
+void set_carry(bool flag, uint8_t* registers)
+{
+    uint8_t flags = registers[5];
+
+    uint8_t carry = (BOOL_TO_INT(flag) << 4) & 0b00010000;
+
+    // put the zero bit to 0 so we can overwrite it
+    flags &= 0b11100000;
+
+    // set the zero bit
+    flags |= carry;
+
+    reg_store(flags, 5, registers);
+}
+
+/*
+ *
+ */
+struct reg_flags get_flags(uint8_t *registers)
+{
+    uint8_t value = reg_load(5, registers);
+
+    struct reg_flags flags = {false, false, false, false};
+
+    flags.zero = INT_TO_BOOL((value >> 7) &0x1);
+    flags.subraction = INT_TO_BOOL((value >> 6) & 0x1);
+    flags.half_carry = INT_TO_BOOL((value >> 5) & 0x1);
+    flags.carry = INT_TO_BOOL((value >> 4) & 0x1);
+
+    return flags;
+}
 
 /*
  *
