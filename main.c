@@ -1,19 +1,21 @@
 #include <stdio.h>
-#include "fileio.h"
-
+#include "registers.h"
+#include <stdint.h>
 
 int main()
 {
-    // file
-    FILE *file;
-    // open file
-    file = fopen("../roms/Pokemon/rom.gb", "rb");
+    uint8_t* reg_list = reg_init();
 
-    
-    print_contents(file, 300);
+    if (reg_list == NULL)
+    {return -1;}
 
-    // close file
-    fclose(file);
+
+    reg_store(15, 5, reg_list);
+
+    uint8_t value = reg_load(5, reg_list);
+
+    printf("%d\n", value);
+
     return 0;
 }
 

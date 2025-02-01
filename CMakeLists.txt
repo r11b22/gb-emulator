@@ -12,5 +12,5 @@ set(CMAKE_BUILD_TYPE Debug)
 project(gd-emulator VERSION 1.0 LANGUAGES C)
 
 # create an exectuable
-add_executable(gb-emulator main.c fileio.h fileio.c)
+add_executable(gb-emulator main.c registers.c registers.c)
 

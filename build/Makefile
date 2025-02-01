@@ -129,30 +129,6 @@ gb-emulator/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/build
 .PHONY : gb-emulator/fast
 
-fileio.o: fileio.c.o
-.PHONY : fileio.o
-
-# target to build an object file
-fileio.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/fileio.c.o
-.PHONY : fileio.c.o
-
-fileio.i: fileio.c.i
-.PHONY : fileio.i
-
-# target to preprocess a source file
-fileio.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/fileio.c.i
-.PHONY : fileio.c.i
-
-fileio.s: fileio.c.s
-.PHONY : fileio.s
-
-# target to generate assembly for a file
-fileio.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/fileio.c.s
-.PHONY : fileio.c.s
-
 main.o: main.c.o
 .PHONY : main.o
 
@@ -177,6 +153,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/main.c.s
 .PHONY : main.c.s
 
+registers.o: registers.c.o
+.PHONY : registers.o
+
+# target to build an object file
+registers.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/registers.c.o
+.PHONY : registers.c.o
+
+registers.i: registers.c.i
+.PHONY : registers.i
+
+# target to preprocess a source file
+registers.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/registers.c.i
+.PHONY : registers.c.i
+
+registers.s: registers.c.s
+.PHONY : registers.s
+
+# target to generate assembly for a file
+registers.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/registers.c.s
+.PHONY : registers.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... gb-emulator"
-	@echo "... fileio.o"
-	@echo "... fileio.i"
-	@echo "... fileio.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... registers.o"
+	@echo "... registers.i"
+	@echo "... registers.s"
 .PHONY : help
 
 

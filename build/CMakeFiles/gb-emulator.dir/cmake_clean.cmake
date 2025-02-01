@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/gb-emulator.dir/fileio.c.o"
-  "CMakeFiles/gb-emulator.dir/fileio.c.o.d"
   "CMakeFiles/gb-emulator.dir/main.c.o"
   "CMakeFiles/gb-emulator.dir/main.c.o.d"
+  "CMakeFiles/gb-emulator.dir/registers.c.o"
+  "CMakeFiles/gb-emulator.dir/registers.c.o.d"
   "gb-emulator"
   "gb-emulator.pdb"
 )
