@@ -12,7 +12,7 @@
 
 struct reg_flags{
     bool zero;
-    bool subraction;
+    bool subtraction;
     bool half_carry;
     bool carry;
 };

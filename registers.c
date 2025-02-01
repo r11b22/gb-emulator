@@ -51,7 +51,7 @@ void set_flags(struct reg_flags flags, uint8_t *registers)
 {
     // calculate flag values individually
     uint8_t zero = (BOOL_TO_INT(flags.zero) << 7) & 0b10000000;
-    uint8_t subtraction = (BOOL_TO_INT(flags.subraction) << 6) & 0b01000000;
+    uint8_t subtraction = (BOOL_TO_INT(flags.subtraction) << 6) & 0b01000000;
     uint8_t half_carry = (BOOL_TO_INT(flags.half_carry) << 5) & 0b00100000;
     uint8_t carry = (BOOL_TO_INT(flags.carry) << 4) & 0b00010000;
 
@@ -65,8 +65,6 @@ void set_zero(bool flag, uint8_t* registers)
     uint8_t flags = registers[5];
 
     uint8_t zero = (BOOL_TO_INT(flag) << 7) & 0b10000000;
-
-    printf("%#x\n", zero);
 
     // put the zero bit to 0 so we can overwrite it
     flags &= 0b01110000;
@@ -136,7 +134,7 @@ struct reg_flags get_flags(uint8_t *registers)
     struct reg_flags flags = {false, false, false, false};
 
     flags.zero = INT_TO_BOOL((value >> 7) &0x1);
-    flags.subraction = INT_TO_BOOL((value >> 6) & 0x1);
+    flags.subtraction = INT_TO_BOOL((value >> 6) & 0x1);
     flags.half_carry = INT_TO_BOOL((value >> 5) & 0x1);
     flags.carry = INT_TO_BOOL((value >> 4) & 0x1);
 

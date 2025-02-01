@@ -26,7 +26,7 @@ int main()
     struct reg_flags result_flags = get_flags(registers);
 
     assert(result_flags.zero == flags.zero);
-    assert(result_flags.subraction == flags.subraction);
+    assert(result_flags.subtraction == flags.subtraction);
     assert(result_flags.half_carry == flags.half_carry);
     assert(result_flags.carry == flags.carry);
 
@@ -41,7 +41,7 @@ int main()
     result_flags = get_flags(registers);
 
     assert(result_flags.zero == true);
-    assert(result_flags.subraction == false);
+    assert(result_flags.subtraction == false);
     assert(result_flags.half_carry == false);
     assert(result_flags.carry == true);
 

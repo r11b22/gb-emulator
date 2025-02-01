@@ -12,11 +12,9 @@ void add(size_t target, uint8_t *registers)
 
 
     // set all of the flags
-    struct reg_flags flags = {result == 0, false, result > 0xff, result > 0xffff};
+    struct reg_flags flags = {result == 0, false, result > 0xf, result > 0xff};
     
     set_flags(flags, registers);
-
-
 
     reg_store((uint8_t)result, 0, registers);   
 }

@@ -7,6 +7,7 @@
 
 /*
  * adds the values in register a and target into a
+ * sets flags Z, C
  */
 void add(size_t target, uint8_t* registers);
 
