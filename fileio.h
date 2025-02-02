@@ -3,12 +3,17 @@
 #define FILEIO_H
 
 #include <stdio.h>
+#include <stdint.h>
+#include <stdio.h>
 
-// the size of an operation in bytes
-#define INSTRUCTION unsigned char
-#define INS_SIZE sizeof(unsigned char)
-
+/*
+ * prints {size} bytes from the file
+ */
 void print_contents(FILE* file, unsigned int size);
 
+/*
+ * reads one byte from a file and moves the file pointer
+ */
+uint8_t read_byte(FILE* file);
 
 #endif

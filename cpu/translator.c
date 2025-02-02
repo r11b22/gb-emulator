@@ -79,6 +79,9 @@ void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter)
 
         // after instruction execution increment program counter
         inc(program_counter);
+    }else
+    {
+        printf("insturction: 0x%x not implemented for oplength of 1 byte\n", opcode);
     }
 
 
