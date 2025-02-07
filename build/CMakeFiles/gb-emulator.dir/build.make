@@ -83,33 +83,113 @@ CMakeFiles/gb-emulator.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/gb-emulator.dir/main.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joost/Documents/projects/gb-emulator/main.c -o CMakeFiles/gb-emulator.dir/main.c.s
 
-CMakeFiles/gb-emulator.dir/registers.c.o: CMakeFiles/gb-emulator.dir/flags.make
-CMakeFiles/gb-emulator.dir/registers.c.o: /home/joost/Documents/projects/gb-emulator/registers.c
-CMakeFiles/gb-emulator.dir/registers.c.o: CMakeFiles/gb-emulator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joost/Documents/projects/gb-emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/gb-emulator.dir/registers.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gb-emulator.dir/registers.c.o -MF CMakeFiles/gb-emulator.dir/registers.c.o.d -o CMakeFiles/gb-emulator.dir/registers.c.o -c /home/joost/Documents/projects/gb-emulator/registers.c
+CMakeFiles/gb-emulator.dir/fileio.c.o: CMakeFiles/gb-emulator.dir/flags.make
+CMakeFiles/gb-emulator.dir/fileio.c.o: /home/joost/Documents/projects/gb-emulator/fileio.c
+CMakeFiles/gb-emulator.dir/fileio.c.o: CMakeFiles/gb-emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joost/Documents/projects/gb-emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/gb-emulator.dir/fileio.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gb-emulator.dir/fileio.c.o -MF CMakeFiles/gb-emulator.dir/fileio.c.o.d -o CMakeFiles/gb-emulator.dir/fileio.c.o -c /home/joost/Documents/projects/gb-emulator/fileio.c
 
-CMakeFiles/gb-emulator.dir/registers.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/gb-emulator.dir/registers.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/joost/Documents/projects/gb-emulator/registers.c > CMakeFiles/gb-emulator.dir/registers.c.i
+CMakeFiles/gb-emulator.dir/fileio.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/gb-emulator.dir/fileio.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/joost/Documents/projects/gb-emulator/fileio.c > CMakeFiles/gb-emulator.dir/fileio.c.i
 
-CMakeFiles/gb-emulator.dir/registers.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/gb-emulator.dir/registers.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joost/Documents/projects/gb-emulator/registers.c -o CMakeFiles/gb-emulator.dir/registers.c.s
+CMakeFiles/gb-emulator.dir/fileio.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/gb-emulator.dir/fileio.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joost/Documents/projects/gb-emulator/fileio.c -o CMakeFiles/gb-emulator.dir/fileio.c.s
+
+CMakeFiles/gb-emulator.dir/cpu/registers.c.o: CMakeFiles/gb-emulator.dir/flags.make
+CMakeFiles/gb-emulator.dir/cpu/registers.c.o: /home/joost/Documents/projects/gb-emulator/cpu/registers.c
+CMakeFiles/gb-emulator.dir/cpu/registers.c.o: CMakeFiles/gb-emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joost/Documents/projects/gb-emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/gb-emulator.dir/cpu/registers.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gb-emulator.dir/cpu/registers.c.o -MF CMakeFiles/gb-emulator.dir/cpu/registers.c.o.d -o CMakeFiles/gb-emulator.dir/cpu/registers.c.o -c /home/joost/Documents/projects/gb-emulator/cpu/registers.c
+
+CMakeFiles/gb-emulator.dir/cpu/registers.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/gb-emulator.dir/cpu/registers.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/joost/Documents/projects/gb-emulator/cpu/registers.c > CMakeFiles/gb-emulator.dir/cpu/registers.c.i
+
+CMakeFiles/gb-emulator.dir/cpu/registers.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/gb-emulator.dir/cpu/registers.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joost/Documents/projects/gb-emulator/cpu/registers.c -o CMakeFiles/gb-emulator.dir/cpu/registers.c.s
+
+CMakeFiles/gb-emulator.dir/cpu/alu.c.o: CMakeFiles/gb-emulator.dir/flags.make
+CMakeFiles/gb-emulator.dir/cpu/alu.c.o: /home/joost/Documents/projects/gb-emulator/cpu/alu.c
+CMakeFiles/gb-emulator.dir/cpu/alu.c.o: CMakeFiles/gb-emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joost/Documents/projects/gb-emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/gb-emulator.dir/cpu/alu.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gb-emulator.dir/cpu/alu.c.o -MF CMakeFiles/gb-emulator.dir/cpu/alu.c.o.d -o CMakeFiles/gb-emulator.dir/cpu/alu.c.o -c /home/joost/Documents/projects/gb-emulator/cpu/alu.c
+
+CMakeFiles/gb-emulator.dir/cpu/alu.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/gb-emulator.dir/cpu/alu.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/joost/Documents/projects/gb-emulator/cpu/alu.c > CMakeFiles/gb-emulator.dir/cpu/alu.c.i
+
+CMakeFiles/gb-emulator.dir/cpu/alu.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/gb-emulator.dir/cpu/alu.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joost/Documents/projects/gb-emulator/cpu/alu.c -o CMakeFiles/gb-emulator.dir/cpu/alu.c.s
+
+CMakeFiles/gb-emulator.dir/cpu/cu.c.o: CMakeFiles/gb-emulator.dir/flags.make
+CMakeFiles/gb-emulator.dir/cpu/cu.c.o: /home/joost/Documents/projects/gb-emulator/cpu/cu.c
+CMakeFiles/gb-emulator.dir/cpu/cu.c.o: CMakeFiles/gb-emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joost/Documents/projects/gb-emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/gb-emulator.dir/cpu/cu.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gb-emulator.dir/cpu/cu.c.o -MF CMakeFiles/gb-emulator.dir/cpu/cu.c.o.d -o CMakeFiles/gb-emulator.dir/cpu/cu.c.o -c /home/joost/Documents/projects/gb-emulator/cpu/cu.c
+
+CMakeFiles/gb-emulator.dir/cpu/cu.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/gb-emulator.dir/cpu/cu.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/joost/Documents/projects/gb-emulator/cpu/cu.c > CMakeFiles/gb-emulator.dir/cpu/cu.c.i
+
+CMakeFiles/gb-emulator.dir/cpu/cu.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/gb-emulator.dir/cpu/cu.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joost/Documents/projects/gb-emulator/cpu/cu.c -o CMakeFiles/gb-emulator.dir/cpu/cu.c.s
+
+CMakeFiles/gb-emulator.dir/cpu/translator.c.o: CMakeFiles/gb-emulator.dir/flags.make
+CMakeFiles/gb-emulator.dir/cpu/translator.c.o: /home/joost/Documents/projects/gb-emulator/cpu/translator.c
+CMakeFiles/gb-emulator.dir/cpu/translator.c.o: CMakeFiles/gb-emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joost/Documents/projects/gb-emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/gb-emulator.dir/cpu/translator.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gb-emulator.dir/cpu/translator.c.o -MF CMakeFiles/gb-emulator.dir/cpu/translator.c.o.d -o CMakeFiles/gb-emulator.dir/cpu/translator.c.o -c /home/joost/Documents/projects/gb-emulator/cpu/translator.c
+
+CMakeFiles/gb-emulator.dir/cpu/translator.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/gb-emulator.dir/cpu/translator.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/joost/Documents/projects/gb-emulator/cpu/translator.c > CMakeFiles/gb-emulator.dir/cpu/translator.c.i
+
+CMakeFiles/gb-emulator.dir/cpu/translator.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/gb-emulator.dir/cpu/translator.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joost/Documents/projects/gb-emulator/cpu/translator.c -o CMakeFiles/gb-emulator.dir/cpu/translator.c.s
+
+CMakeFiles/gb-emulator.dir/cpu/memory.c.o: CMakeFiles/gb-emulator.dir/flags.make
+CMakeFiles/gb-emulator.dir/cpu/memory.c.o: /home/joost/Documents/projects/gb-emulator/cpu/memory.c
+CMakeFiles/gb-emulator.dir/cpu/memory.c.o: CMakeFiles/gb-emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joost/Documents/projects/gb-emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/gb-emulator.dir/cpu/memory.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gb-emulator.dir/cpu/memory.c.o -MF CMakeFiles/gb-emulator.dir/cpu/memory.c.o.d -o CMakeFiles/gb-emulator.dir/cpu/memory.c.o -c /home/joost/Documents/projects/gb-emulator/cpu/memory.c
+
+CMakeFiles/gb-emulator.dir/cpu/memory.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/gb-emulator.dir/cpu/memory.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/joost/Documents/projects/gb-emulator/cpu/memory.c > CMakeFiles/gb-emulator.dir/cpu/memory.c.i
+
+CMakeFiles/gb-emulator.dir/cpu/memory.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/gb-emulator.dir/cpu/memory.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joost/Documents/projects/gb-emulator/cpu/memory.c -o CMakeFiles/gb-emulator.dir/cpu/memory.c.s
 
 # Object files for target gb-emulator
 gb__emulator_OBJECTS = \
 "CMakeFiles/gb-emulator.dir/main.c.o" \
-"CMakeFiles/gb-emulator.dir/registers.c.o"
+"CMakeFiles/gb-emulator.dir/fileio.c.o" \
+"CMakeFiles/gb-emulator.dir/cpu/registers.c.o" \
+"CMakeFiles/gb-emulator.dir/cpu/alu.c.o" \
+"CMakeFiles/gb-emulator.dir/cpu/cu.c.o" \
+"CMakeFiles/gb-emulator.dir/cpu/translator.c.o" \
+"CMakeFiles/gb-emulator.dir/cpu/memory.c.o"
 
 # External object files for target gb-emulator
 gb__emulator_EXTERNAL_OBJECTS =
 
 gb-emulator: CMakeFiles/gb-emulator.dir/main.c.o
-gb-emulator: CMakeFiles/gb-emulator.dir/registers.c.o
+gb-emulator: CMakeFiles/gb-emulator.dir/fileio.c.o
+gb-emulator: CMakeFiles/gb-emulator.dir/cpu/registers.c.o
+gb-emulator: CMakeFiles/gb-emulator.dir/cpu/alu.c.o
+gb-emulator: CMakeFiles/gb-emulator.dir/cpu/cu.c.o
+gb-emulator: CMakeFiles/gb-emulator.dir/cpu/translator.c.o
+gb-emulator: CMakeFiles/gb-emulator.dir/cpu/memory.c.o
 gb-emulator: CMakeFiles/gb-emulator.dir/build.make
 gb-emulator: CMakeFiles/gb-emulator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/joost/Documents/projects/gb-emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable gb-emulator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/joost/Documents/projects/gb-emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable gb-emulator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gb-emulator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

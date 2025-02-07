@@ -129,6 +129,150 @@ gb-emulator/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/build
 .PHONY : gb-emulator/fast
 
+cpu/alu.o: cpu/alu.c.o
+.PHONY : cpu/alu.o
+
+# target to build an object file
+cpu/alu.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/alu.c.o
+.PHONY : cpu/alu.c.o
+
+cpu/alu.i: cpu/alu.c.i
+.PHONY : cpu/alu.i
+
+# target to preprocess a source file
+cpu/alu.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/alu.c.i
+.PHONY : cpu/alu.c.i
+
+cpu/alu.s: cpu/alu.c.s
+.PHONY : cpu/alu.s
+
+# target to generate assembly for a file
+cpu/alu.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/alu.c.s
+.PHONY : cpu/alu.c.s
+
+cpu/cu.o: cpu/cu.c.o
+.PHONY : cpu/cu.o
+
+# target to build an object file
+cpu/cu.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/cu.c.o
+.PHONY : cpu/cu.c.o
+
+cpu/cu.i: cpu/cu.c.i
+.PHONY : cpu/cu.i
+
+# target to preprocess a source file
+cpu/cu.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/cu.c.i
+.PHONY : cpu/cu.c.i
+
+cpu/cu.s: cpu/cu.c.s
+.PHONY : cpu/cu.s
+
+# target to generate assembly for a file
+cpu/cu.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/cu.c.s
+.PHONY : cpu/cu.c.s
+
+cpu/memory.o: cpu/memory.c.o
+.PHONY : cpu/memory.o
+
+# target to build an object file
+cpu/memory.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/memory.c.o
+.PHONY : cpu/memory.c.o
+
+cpu/memory.i: cpu/memory.c.i
+.PHONY : cpu/memory.i
+
+# target to preprocess a source file
+cpu/memory.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/memory.c.i
+.PHONY : cpu/memory.c.i
+
+cpu/memory.s: cpu/memory.c.s
+.PHONY : cpu/memory.s
+
+# target to generate assembly for a file
+cpu/memory.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/memory.c.s
+.PHONY : cpu/memory.c.s
+
+cpu/registers.o: cpu/registers.c.o
+.PHONY : cpu/registers.o
+
+# target to build an object file
+cpu/registers.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/registers.c.o
+.PHONY : cpu/registers.c.o
+
+cpu/registers.i: cpu/registers.c.i
+.PHONY : cpu/registers.i
+
+# target to preprocess a source file
+cpu/registers.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/registers.c.i
+.PHONY : cpu/registers.c.i
+
+cpu/registers.s: cpu/registers.c.s
+.PHONY : cpu/registers.s
+
+# target to generate assembly for a file
+cpu/registers.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/registers.c.s
+.PHONY : cpu/registers.c.s
+
+cpu/translator.o: cpu/translator.c.o
+.PHONY : cpu/translator.o
+
+# target to build an object file
+cpu/translator.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/translator.c.o
+.PHONY : cpu/translator.c.o
+
+cpu/translator.i: cpu/translator.c.i
+.PHONY : cpu/translator.i
+
+# target to preprocess a source file
+cpu/translator.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/translator.c.i
+.PHONY : cpu/translator.c.i
+
+cpu/translator.s: cpu/translator.c.s
+.PHONY : cpu/translator.s
+
+# target to generate assembly for a file
+cpu/translator.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/translator.c.s
+.PHONY : cpu/translator.c.s
+
+fileio.o: fileio.c.o
+.PHONY : fileio.o
+
+# target to build an object file
+fileio.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/fileio.c.o
+.PHONY : fileio.c.o
+
+fileio.i: fileio.c.i
+.PHONY : fileio.i
+
+# target to preprocess a source file
+fileio.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/fileio.c.i
+.PHONY : fileio.c.i
+
+fileio.s: fileio.c.s
+.PHONY : fileio.s
+
+# target to generate assembly for a file
+fileio.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/fileio.c.s
+.PHONY : fileio.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -153,30 +297,6 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/main.c.s
 .PHONY : main.c.s
 
-registers.o: registers.c.o
-.PHONY : registers.o
-
-# target to build an object file
-registers.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/registers.c.o
-.PHONY : registers.c.o
-
-registers.i: registers.c.i
-.PHONY : registers.i
-
-# target to preprocess a source file
-registers.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/registers.c.i
-.PHONY : registers.c.i
-
-registers.s: registers.c.s
-.PHONY : registers.s
-
-# target to generate assembly for a file
-registers.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/registers.c.s
-.PHONY : registers.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +306,27 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... gb-emulator"
+	@echo "... cpu/alu.o"
+	@echo "... cpu/alu.i"
+	@echo "... cpu/alu.s"
+	@echo "... cpu/cu.o"
+	@echo "... cpu/cu.i"
+	@echo "... cpu/cu.s"
+	@echo "... cpu/memory.o"
+	@echo "... cpu/memory.i"
+	@echo "... cpu/memory.s"
+	@echo "... cpu/registers.o"
+	@echo "... cpu/registers.i"
+	@echo "... cpu/registers.s"
+	@echo "... cpu/translator.o"
+	@echo "... cpu/translator.i"
+	@echo "... cpu/translator.s"
+	@echo "... fileio.o"
+	@echo "... fileio.i"
+	@echo "... fileio.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... registers.o"
-	@echo "... registers.i"
-	@echo "... registers.s"
 .PHONY : help
 
 

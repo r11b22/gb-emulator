@@ -19,10 +19,11 @@ void print_contents(FILE* file, unsigned int size)
 }
 
 
-uint8_t read_byte(FILE* file)
+uint8_t read_byte(FILE* file, uint16_t program_counter)
 {
     uint8_t byte;
 
+    fseek(file, program_counter, SEEK_SET);
     fread(&byte, sizeof(uint8_t), 1, file);
 
     return byte;

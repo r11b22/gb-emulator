@@ -38,3 +38,17 @@ there are 3 types of instructions
 1 len
 2 len
 3 len
+
+
+
+
+## memory (memory.c memory.h)
+memory can be accesd via the mem_load() and mem_store() functions
+
+
+memory is divided in sectors
+
+* 0xc000-0xDFFF : Internal ram 8 kB
+* 0xff0-0xff4B : I(nput)/O(utput)  
+* 0xff80-0xfffe : High (speed) ram 127 bytes
+* 0xffff : interupt register 1 byte (stores interupt type)
