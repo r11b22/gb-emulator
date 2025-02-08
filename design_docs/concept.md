@@ -26,6 +26,8 @@ Micro instructions are directly implemented in c
 adds the registers A and traget into A
 #### ADC target
 adds the regsiters A, target and carry into A
+#### ADD16
+adds the 16 bit registers hl and target into hl
 #### SUB target
 subtracts the registers A and target into A
 
@@ -57,11 +59,19 @@ memory is divided in sectors
 * 0xff80-0xfffe : High (speed) ram 127 bytes
 * 0xffff : interupt register 1 byte (stores interupt type)
 
-## interrupts
+## interrupts (interrupt.h interrupt.c)
 
 every interrupt only the PC is pushed to the stack
 
 the reti instruction pops this from the stack and resumes its normal opperation
+
+
+
+### interrupt_enter function
+enters an interrupt and pushes the correct values to the stack
+
+### interrupt_exit function
+exits an interrupt and pops the correct values from the stack
 
 ### vblank
 vblank is triggered every frame

@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "cpu/memory.h"
 
-#define STEPWISE
+#define STEPWISE 0x021b 
 
 #define LEN_2_OPCODES_LEN 16
 #define LEN_3_OPCODES_LEN 8
@@ -58,19 +58,27 @@ int main(int argc, char** argv)
     uint8_t* memory = mem_init();
 
     read_file_to_mem(file, memory);
-    
+    #ifdef STEPWISE
+    bool breaked = false;
+    #endif
     // loop until 0x10 (stop)
     while (memory[program_counter] != 0x10 && file != NULL) {
         
         uint8_t byte = memory[program_counter];
         #ifdef STEPWISE
-        printf("executing instruction: 0x%x, 0x%x, 0x%x at: 0x%x\n", byte, memory[program_counter + 1], memory[program_counter + 2], program_counter);
+        if(breaked)
+        {
+            printf("executing instruction: 0x%x, 0x%x, 0x%x at: 0x%x\n", byte, memory[program_counter + 1], memory[program_counter + 2], program_counter);
 
 
 
 
-        // wait for confirmation
-        getchar();
+            // wait for confirmation
+            getchar();
+        }else if(program_counter == STEPWISE)
+        {
+            breaked = true;
+        }
         #endif
 
 
@@ -89,6 +97,8 @@ int main(int argc, char** argv)
         }
         
         #ifdef STEPWISE
+        if(breaked)
+        {
         // print registers
         printf("REGISTERS:\n");
         printf("\treg a: 0x%x\n", registers[0]);
@@ -100,6 +110,7 @@ int main(int argc, char** argv)
         printf("\treg h: 0x%x\n", registers[6]);
         printf("\treg l: 0x%x\n", registers[7]);
         printf("\tStack pointer: 0x%x\n", stack_pointer);
+        }
         #endif
         
     }
