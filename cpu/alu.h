@@ -18,5 +18,8 @@ void add(size_t target, uint8_t* registers);
  */
 void adc(size_t target, uint8_t* registers);
 
-
+/*
+ * subtracts the values in register a and target into a
+ */
+void sub(size_t target, uint8_t* registers);
 #endif

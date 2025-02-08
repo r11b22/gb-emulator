@@ -8,13 +8,14 @@
 #include <stdlib.h>
 #include "cpu/memory.h"
 
+#define STEPWISE
 
-#define LEN_2_OPCODES_LEN 4
-#define LEN_3_OPCODES_LEN 0
+#define LEN_2_OPCODES_LEN 16
+#define LEN_3_OPCODES_LEN 6
 
 size_t get_exectution_len(uint8_t opcode)
 {
-    uint8_t len_2_opcodes[LEN_2_OPCODES_LEN] = {0x20, 0x30, 0xf0, 0xe0};
+    uint8_t len_2_opcodes[LEN_2_OPCODES_LEN] = {0x18, 0x20, 0x30, 0x28, 0x38, 0xf0, 0xe0, 0x06, 0x0e, 0x16, 0x1e, 0x26, 0x2e, 0x36, 0x3e, 0xfe};
     for (int i = 0; i < LEN_2_OPCODES_LEN; i++)
     {
         if (opcode == len_2_opcodes[i])
@@ -23,7 +24,7 @@ size_t get_exectution_len(uint8_t opcode)
         }
     }
 
-    uint8_t len_3_opcodes[LEN_3_OPCODES_LEN] = {};
+    uint8_t len_3_opcodes[LEN_3_OPCODES_LEN] = {0xc2, 0xd2, 0xc3, 0x01, 0x11, 0x21};
     for (int i = 0; i < LEN_3_OPCODES_LEN; i++)
     {
         if (opcode == len_3_opcodes[i])
@@ -37,34 +38,74 @@ size_t get_exectution_len(uint8_t opcode)
 
 
 
-int main()
+int main(int argc, char** argv)
 {
 
     char cwd[100];
     getcwd(cwd, sizeof(cwd));
 
     printf("Working directory is %s\n", cwd);
-    FILE* file = fopen("../roms/Tetris/rom.gb", "rb");
+    const char* path = "roms/Pokemon/rom.gb";
+    if(argc > 1)
+    {
+        path = argv[1];
+    }
+    FILE* file = fopen(path, "rb");
 
     uint8_t* registers = reg_init();
-    uint16_t program_counter = 0;
+    uint16_t program_counter = 0x100;
+    uint16_t stack_pointer = 0xfffe;
     uint8_t* memory = mem_init();
 
-    while (!feof(file)) {
-        uint8_t byte = read_byte(file, program_counter);
-        if(get_exectution_len(byte) == 1)
+    read_file_to_mem(file, memory);
+    
+    // loop until 0x10 (stop)
+    while (memory[program_counter] != 0x10 && file != NULL) {
+        
+        uint8_t byte = memory[program_counter];
+        #ifdef STEPWISE
+        printf("executing instruction: 0x%x, 0x%x, 0x%x at: 0x%x\n", byte, memory[program_counter + 1], memory[program_counter + 2], program_counter);
+
+
+
+
+        // wait for confirmation
+        getchar();
+        #endif
+
+
+
+        size_t len = get_exectution_len(byte);    
+        if(len == 1)
         {
             //printf("test\n");
-            exec_1(byte, registers, &program_counter);
-        }else if(get_exectution_len(byte) == 2)
+            exec_1(byte, registers, &program_counter, &stack_pointer, memory);
+        }else if(len == 2)
         {
-            exec_2(byte, read_byte(file, program_counter + 1), registers, &program_counter, memory);
+            exec_2(byte, memory[program_counter + 1], registers, &program_counter, memory);
+        }else if (len == 3) 
+        {
+            exec_3(byte, memory[program_counter + 1], memory[program_counter + 2], registers, &program_counter, memory);
         }
         
+        #ifdef STEPWISE
+        // print registers
+        printf("REGISTERS:\n");
+        printf("\treg a: 0x%x\n", registers[0]);
+        printf("\treg b: 0x%x\n", registers[1]);
+        printf("\treg c: 0x%x\n", registers[2]);
+        printf("\treg d: 0x%x\n", registers[3]);
+        printf("\treg e: 0x%x\n", registers[4]);
+        printf("\treg f: 0x%x\n", registers[5]);
+        printf("\treg h: 0x%x\n", registers[6]);
+        printf("\treg l: 0x%x\n", registers[7]);
+        #endif
         
     }
-
-    fclose(file);
+    if(file != NULL)
+    {
+        fclose(file);
+    }
 
     free(memory);
     free(registers);

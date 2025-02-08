@@ -16,4 +16,9 @@ void print_contents(FILE* file, unsigned int size);
  */
 uint8_t read_byte(FILE* file, uint16_t program_counter);
 
+/*
+ * reads a file into the rom section of the gb memory
+ */
+void read_file_to_mem(FILE* file, uint8_t* memory);
+
 #endif

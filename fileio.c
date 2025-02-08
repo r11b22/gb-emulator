@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,6 +18,21 @@ void print_contents(FILE* file, unsigned int size)
     printf("\n");
     free(buffer);
 }
+
+void read_file_to_mem(FILE* file, uint8_t* memory)
+{
+    if(file == NULL)
+    {
+        fprintf(stderr, "Error: File pointer is NULL\n");
+        return;
+    }
+    // get filesize
+    fseek(file, 0L, SEEK_END);
+    size_t size = ftell(file);
+    rewind(file);
+    fread(memory, sizeof(uint8_t), size, file);
+}
+
 
 
 uint8_t read_byte(FILE* file, uint16_t program_counter)

@@ -174,20 +174,20 @@ uint16_t reg_load16(size_t reg_ind, uint8_t *registers)
 
     switch (reg_ind) {
         case 0:
-            reg1 = registers[0];
-            reg2 = registers[5];
+            reg1 = registers[5];
+            reg2 = registers[0];
             break;
         case 1:
-            reg1 = registers[1];
-            reg2 = registers[2];
+            reg1 = registers[2];
+            reg2 = registers[1];
             break;
         case 2:
-            reg1 = registers[3];
-            reg2 = registers[4];
+            reg1 = registers[4];
+            reg2 = registers[3];
             break;
         case 3:
-            reg1 = registers[6];
-            reg2 = registers[7];
+            reg1 = registers[7];
+            reg2 = registers[6];
             break;
     }
     // convert both registers to 16 bits
@@ -227,20 +227,20 @@ void reg_store16(uint16_t value, size_t reg_ind, uint8_t *registers)
     
     switch (reg_ind) {
     case 0:
-        registers[0] = reg1;
-        registers[5] = reg2;
+        registers[5] = reg1;
+        registers[0] = reg2;
         break;
     case 1:
-        registers[1] = reg1;
-        registers[2] = reg2;
+        registers[2] = reg1;
+        registers[1] = reg2;
         break;
     case 2:
-        registers[3] = reg1;
-        registers[4] = reg2;
+        registers[4] = reg1;
+        registers[3] = reg2;
         break;
     case 3:
-        registers[6] = reg1;
-        registers[7] = reg2;
+        registers[7] = reg1;
+        registers[6] = reg2;
         break;
     }
 }

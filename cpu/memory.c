@@ -35,3 +35,33 @@ uint8_t mem_load(uint16_t address, uint8_t* memory)
 {
     return memory[address];
 }
+
+/*
+ * the stack climbs down
+ * this function increments the sp(until out of bounds)
+ */
+uint8_t stack_pop(uint16_t *stack_pointer, uint8_t *memory)
+{
+    uint8_t value = memory[*stack_pointer];
+    if (*stack_pointer < MEM_SIZE)
+    {
+        (*stack_pointer)++;
+    }
+    return value;
+}
+
+/*
+ * the stack climbs down
+ * this function decrements the sp (until out of bounds)
+ */
+void stack_push(uint8_t value, uint16_t *stack_pointer, uint8_t *memory)
+{
+    // make space on stack
+    if(*stack_pointer > 0)
+    {
+        (*stack_pointer)--;
+    }
+
+    // put value on stack
+    memory[*stack_pointer] = value;
+}

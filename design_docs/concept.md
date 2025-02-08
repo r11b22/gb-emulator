@@ -1,5 +1,7 @@
 # A GB-EMULATOR WRITEN IN C
 
+## Data
+16 bit values in instructions are in little endian: (lo hi)
 
 ## managing registers (registers.c, registers.h)
 registers are kept in an array
@@ -24,6 +26,8 @@ Micro instructions are directly implemented in c
 adds the registers A and traget into A
 #### ADC target
 adds the regsiters A, target and carry into A
+#### SUB target
+subtracts the registers A and target into A
 
 ### CU (cu.c cu.h)
 #### INC
