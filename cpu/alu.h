@@ -13,6 +13,11 @@
 void add(size_t target, uint8_t* registers);
 
 /*
+ * adds the 16bit values in register HL and target into HL
+ */
+void add16(size_t target, uint8_t* registers);
+
+/*
  * adds the values in register a, target and the carry flag into a
  * sets flags Z, N, H, C
  */

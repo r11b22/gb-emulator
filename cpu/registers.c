@@ -169,30 +169,30 @@ uint16_t reg_load16(size_t reg_ind, uint8_t *registers)
     if (reg_ind >= 4)
     {printf("reg_ind: %zd, is not a valid 16 bit register address.\n", reg_ind);}
 
-    uint8_t reg1;
-    uint8_t reg2;
+    uint8_t hi;
+    uint8_t lo;
 
     switch (reg_ind) {
         case 0:
-            reg1 = registers[5];
-            reg2 = registers[0];
+            hi = registers[0];
+            lo = registers[5];
             break;
         case 1:
-            reg1 = registers[2];
-            reg2 = registers[1];
+            hi = registers[1];
+            lo = registers[2];
             break;
         case 2:
-            reg1 = registers[4];
-            reg2 = registers[3];
+            hi = registers[3];
+            lo = registers[4];
             break;
         case 3:
-            reg1 = registers[7];
-            reg2 = registers[6];
+            hi = registers[6];
+            lo = registers[7];
             break;
     }
     // convert both registers to 16 bits
-    uint16_t value1 = (uint16_t) reg1;
-    uint16_t value2 = (uint16_t) ((reg2 << 8) & 0xff00);
+    uint16_t value1 = ((uint16_t) lo) & 0x00ff;
+    uint16_t value2 = (uint16_t) ((hi << 8) & 0xff00);
 
     // combine the values and return
     return value1 | value2;
@@ -222,25 +222,25 @@ void reg_store16(uint16_t value, size_t reg_ind, uint8_t *registers)
     {printf("reg_ind: %zd, is not a valid 16 bit register address.\n", reg_ind);}
 
 
-    uint8_t reg1 = (uint8_t)(value & 0xff); // get the first 8 bits
-    uint8_t reg2 = (uint8_t)(value >> 8) & 0xff; // get the last 8 bits
+    uint8_t lo = (uint8_t)(value & 0xff); // get the first 8 bits
+    uint8_t hi = (uint8_t)(value >> 8) & 0xff; // get the last 8 bits
     
     switch (reg_ind) {
     case 0:
-        registers[5] = reg1;
-        registers[0] = reg2;
+        registers[0] = hi;
+        registers[5] = lo;
         break;
     case 1:
-        registers[2] = reg1;
-        registers[1] = reg2;
+        registers[1] = hi;
+        registers[2] = lo;
         break;
     case 2:
-        registers[4] = reg1;
-        registers[3] = reg2;
+        registers[3] = hi;
+        registers[4] = lo;
         break;
     case 3:
-        registers[7] = reg1;
-        registers[6] = reg2;
+        registers[6] = hi;
+        registers[7] = lo;
         break;
     }
 }

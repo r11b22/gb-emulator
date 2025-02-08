@@ -2,6 +2,7 @@
 #include "../cpu/registers.h"
 #include <assert.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 void test_add()
@@ -76,10 +77,21 @@ void test_add()
 
     free(registers);
 }
+void test_add16()
+{
+    uint8_t* registers = reg_init();
 
+    reg_store(0xdf, 7, registers);
+    reg_store(0xfd, 6, registers);
+    add16(3, registers);
+
+    printf("HL: 0x%x\n", reg_load16(3, registers));
+    assert(reg_load16(3, registers) == 0xfbbe);
+}
 
 
 int main()
 {
     test_add();
+    test_add16();
 }

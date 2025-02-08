@@ -16,8 +16,8 @@ int main()
     reg_store(38, 5, registers);
     assert(reg_load(5, registers) == 38);
 
-    reg_store16(1256, 3, registers);
-    assert(reg_load16(3, registers) == 1256);
+    reg_store16(0xFDBC, 3, registers);
+    assert(reg_load16(3, registers) == 0xFDBC);
 
     struct reg_flags flags = {0, 1, 1, 0};
 

@@ -11,7 +11,7 @@
 #define STEPWISE
 
 #define LEN_2_OPCODES_LEN 16
-#define LEN_3_OPCODES_LEN 6
+#define LEN_3_OPCODES_LEN 7
 
 size_t get_exectution_len(uint8_t opcode)
 {
@@ -24,7 +24,7 @@ size_t get_exectution_len(uint8_t opcode)
         }
     }
 
-    uint8_t len_3_opcodes[LEN_3_OPCODES_LEN] = {0xc2, 0xd2, 0xc3, 0x01, 0x11, 0x21};
+    uint8_t len_3_opcodes[LEN_3_OPCODES_LEN] = {0xc2, 0xd2, 0xc3, 0x01, 0x11, 0x21, 0x08};
     for (int i = 0; i < LEN_3_OPCODES_LEN; i++)
     {
         if (opcode == len_3_opcodes[i])
@@ -85,7 +85,7 @@ int main(int argc, char** argv)
             exec_2(byte, memory[program_counter + 1], registers, &program_counter, memory);
         }else if (len == 3) 
         {
-            exec_3(byte, memory[program_counter + 1], memory[program_counter + 2], registers, &program_counter, memory);
+            exec_3(byte, memory[program_counter + 1], memory[program_counter + 2], registers, &program_counter, &stack_pointer, memory);
         }
         
         #ifdef STEPWISE

@@ -92,12 +92,21 @@ void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter, uint1
         reg_store(mem_load(reg_load16(3, registers), memory), LD_IM_TRANSLATION[VERTICAL_INDEX(opcode, 0xe) + 3], registers);
         inc(program_counter);
 
+    }else if(opcode == 0x77) // LD mem, A
+    {
+        mem_store(reg_load(0, registers), reg_load16(3, registers), memory);
+        inc(program_counter);
     }else if(IN_RANGE(opcode, 0x80, 0x85)) // ADD A, reg
     {
         add(LD_REG_TRANSLATION[opcode-0x80], registers);
 
         // after instruction execution increment program counter
         inc(program_counter);
+    }else if(IN_VERTICAL_RANGE(opcode, 0x9, 0x0, 0x2)) // ADD HL, reg16
+    {
+       add16(VERTICAL_INDEX(opcode, 0x9)+1, registers);
+
+       inc(program_counter);
     }else if(IN_RANGE(opcode, 0x88, 0x8d)) // adc A, reg
     {
         adc(LD_REG_TRANSLATION[opcode-0x88], registers);
@@ -107,6 +116,22 @@ void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter, uint1
     }else if (IN_RANGE(opcode, 0x90, 0x95)) // SUB, A, reg 
     {
         sub(LD_REG_TRANSLATION[opcode-0x90], registers);
+
+        inc(program_counter);
+    }else if (IN_RANGE(opcode, 0xA0, 0xA5)) // AND, A, reg 
+    {
+        uint8_t result = reg_load(LD_REG_TRANSLATION[opcode-0xA0], registers) & reg_load(0, registers);
+        struct reg_flags flags = {result == 0, 0, 1, 0};
+        set_flags(flags, registers);
+        reg_store(result, 0, registers);
+
+        inc(program_counter);
+    }else if (IN_RANGE(opcode, 0xB0, 0xB5)) // OR, A, reg 
+    {
+        uint8_t result = reg_load(LD_REG_TRANSLATION[opcode-0xB0], registers) | reg_load(0, registers);
+        struct reg_flags flags = {result == 0, 0, 0, 0};
+        set_flags(flags, registers);
+        reg_store(result, 0, registers);
 
         inc(program_counter);
     }else if(IN_VERTICAL_RANGE(opcode, 0x4, 0x0, 0x2)) // inc reg
@@ -160,11 +185,34 @@ void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter, uint1
     }else if(opcode == 0x1f) // RRA
     {
         uint8_t value = reg_load(0, registers);
-        bool new_carry = value & 1;
-        value >>= 1;
-        value = (value & 0b01111111) | ((get_flags(registers).carry << 7) & 0b10000000);
+        value = value >> 1;
+        value = (value & 0b01111111) | ((get_flags(registers).carry << 7)  & 0b10000000);
+        reg_store(value, 0, registers);
+        set_zero(0, registers);
+        set_half_carry(0, registers);
+        set_subtract(0, registers);
+        inc(program_counter);
+    }else if(opcode == 0x17) // RLA
+    {
+        uint8_t value = reg_load(0, registers);
+        value = value << 1;
+        value = (value & 0b11111110) | (get_flags(registers).carry  & 0b00000001);
+        reg_store(value, 0, registers);
+        set_zero(0, registers);
+        set_half_carry(0, registers);
+        set_subtract(0, registers);
+        inc(program_counter);
+    }else if(opcode == 0x7) // RLCA
+    {
+        uint8_t value = reg_load(0, registers);
+        bool new_carry = GET_END_BIT(value);
+        value = value << 1;
+        value = (value & 0b11111110) | (new_carry & 1);
         reg_store(value, 0, registers);
         set_carry(new_carry, registers);
+        set_zero(0, registers);
+        set_half_carry(0, registers);
+        set_subtract(0, registers);
         inc(program_counter);
     }else if(opcode == 0xAf) // xor a
     {
@@ -183,6 +231,11 @@ void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter, uint1
         // go to next instruction
         inc(program_counter);
 
+    }else if(opcode == 0xbf)
+    {
+        struct reg_flags flags = {0, 0, 0, 0};
+        set_flags(flags, registers);
+        inc(program_counter);
     }else if(opcode == 0xc1 || opcode == 0xd1 || opcode == 0xe1 || opcode == 0xf1) // POP reg
     {
         // each pop does 2 8 bit pops
@@ -362,7 +415,8 @@ void exec_2(uint8_t opcode, uint8_t param, uint8_t* registers, uint16_t* program
     }
 }
 
-void exec_3(uint8_t opcode, uint8_t param1, uint8_t param2, uint8_t *registers, uint16_t *program_counter, uint8_t *memory)
+void exec_3(uint8_t opcode, uint8_t param1, uint8_t param2, uint8_t *registers, uint16_t *program_counter, uint16_t *stack_pointer, uint8_t *memory)
+
 {
     uint16_t param = COMBINE_BYTES(param2, param1);
     if(opcode == 0xc2) //JP NZ, a16 
@@ -391,6 +445,10 @@ void exec_3(uint8_t opcode, uint8_t param1, uint8_t param2, uint8_t *registers, 
             jmp(program_counter, 3);    
         }
 
+    }else if(opcode == 0x8) // LD (a16) SP
+    {
+        mem_store(*stack_pointer, param, memory);
+        jmp(program_counter, 3);
     }else if(IN_VERTICAL_RANGE(opcode, 0x1, 0x0, 0x2)) // LD reg, 16bit
     {
         reg_store16(param, VERTICAL_INDEX(opcode, 0x1) + 1, registers);
