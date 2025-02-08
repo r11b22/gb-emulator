@@ -182,6 +182,10 @@ void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter, uint1
         reg_store(value, reg, registers);
         inc(program_counter);
 
+    }else if(IN_VERTICAL_RANGE(opcode, 0x3, 0x0, 0x2)) // inc reg16
+    {
+        reg_store16(reg_load16(VERTICAL_INDEX(opcode, 0x3) + 1, registers) + 1, VERTICAL_INDEX(opcode, 0x3)+ 1, registers);
+        inc(program_counter);
     }else if(opcode == 0x1f) // RRA
     {
         uint8_t value = reg_load(0, registers);
@@ -327,12 +331,10 @@ void exec_2(uint8_t opcode, uint8_t param, uint8_t* registers, uint16_t* program
         struct reg_flags flags = get_flags(registers);
         if (!flags.zero)
         {
-            jmp(program_counter, param);
-        }else 
-        {
-            // next instruction
-            jmp(program_counter, 2);    
+            jmp(program_counter, (int8_t)param);
         }
+        jmp(program_counter, 2);    
+        
         
     }else if(opcode == 0x30) // JR NC, r8
     {
@@ -341,11 +343,9 @@ void exec_2(uint8_t opcode, uint8_t param, uint8_t* registers, uint16_t* program
         if (!flags.carry)
         {
             jmp(program_counter, param);
-        }else
-        {
-            // next instruction
-            jmp(program_counter, 2);
         }
+        jmp(program_counter, 2);
+
     }else if(opcode == 0x28) // JR Z, r8
     {
         // test for Z flag
@@ -353,11 +353,8 @@ void exec_2(uint8_t opcode, uint8_t param, uint8_t* registers, uint16_t* program
         if (flags.zero)
         {
             jmp(program_counter, param);
-        }else 
-        {
-            // next instruction
-            jmp(program_counter, 2);    
         }
+        jmp(program_counter, 2);    
         
     }else if(opcode == 0x38) // JR C, r8
     {
@@ -366,11 +363,9 @@ void exec_2(uint8_t opcode, uint8_t param, uint8_t* registers, uint16_t* program
         if (flags.carry)
         {
             jmp(program_counter, param);
-        }else
-        {
-            // next instruction
-            jmp(program_counter, 2);
         }
+        jmp(program_counter, 2);
+
     }else if(opcode == 0x06 || opcode == 0x16 || opcode == 0x26) // LD reg, d8
     {
         reg_store(param, LD_IM_TRANSLATION[(opcode - 0x06)/16], registers);
@@ -445,15 +440,20 @@ void exec_3(uint8_t opcode, uint8_t param1, uint8_t param2, uint8_t *registers, 
             jmp(program_counter, 3);    
         }
 
-    }else if(opcode == 0x8) // LD (a16) SP
+    }else if(opcode == 0x8) // LD (a16), SP
     {
         mem_store(*stack_pointer, param, memory);
+        mem_store(*stack_pointer >> 8, param + 1, memory);
+        jmp(program_counter, 3);
+    }else if(opcode == 0x31) // LD SP, a16
+    {
+        *stack_pointer = param;
         jmp(program_counter, 3);
     }else if(IN_VERTICAL_RANGE(opcode, 0x1, 0x0, 0x2)) // LD reg, 16bit
     {
         reg_store16(param, VERTICAL_INDEX(opcode, 0x1) + 1, registers);
         jmp(program_counter, 3);
-    }else if(opcode == 0xc3)
+    }else if(opcode == 0xc3) 
     {
         *program_counter = param;
     }else

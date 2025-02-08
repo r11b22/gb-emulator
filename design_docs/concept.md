@@ -56,3 +56,14 @@ memory is divided in sectors
 * 0xff0-0xff4B : I(nput)/O(utput)  
 * 0xff80-0xfffe : High (speed) ram 127 bytes
 * 0xffff : interupt register 1 byte (stores interupt type)
+
+## interrupts
+
+every interrupt only the PC is pushed to the stack
+
+the reti instruction pops this from the stack and resumes its normal opperation
+
+### vblank
+vblank is triggered every frame
+
+the vblank interrupt code is located in 0x0040

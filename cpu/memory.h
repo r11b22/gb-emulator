@@ -5,6 +5,15 @@
 #define MEM_SIZE 65535
 
 
+#define SWRAM_START 0xa000
+#define SWRAM_END 0xdfff
+
+#define IRAM_START 0xc000
+#define IRAM_END 0xdfff
+
+#define HRAM_START 0xff80
+#define HRAM_END 0xfffe
+
 #define IU_ADDR 0xffff
 
 #include <stdint.h>

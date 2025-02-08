@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define IN_RANGE(x, upper, lower) (x <= upper && x >= lower)
+
 
 /*
  * Initializes memory via malloc
@@ -24,8 +26,26 @@ uint8_t* mem_init()
  *
  */
 void mem_store(uint8_t value, uint16_t address, uint8_t *memory)
-{ 
-    memory[address] = value;
+{
+    if(IN_RANGE(address, SWRAM_END, SWRAM_START) || IN_RANGE(address, IRAM_END, IRAM_START) || IN_RANGE(address, HRAM_END, HRAM_START))
+    {
+        memory[address] = value;
+        #ifndef NDEBUG
+            printf("Memory write:\n");
+            if(address != 0x0)
+            {
+                printf("0x%x-0x%x\n", address-1, memory[address-1]);
+            }
+            printf("0x%x-0x%x\n", address, memory[address]);
+            if (address != 0xffff)
+            {
+                printf("0x%x-0x%x\n", address+1, memory[address+1]);
+            }
+        #endif
+    }else
+    {
+        printf("Memory write in a read only segment: address: 0x%x\n", address);
+    }
 }
 
 /*
@@ -33,6 +53,19 @@ void mem_store(uint8_t value, uint16_t address, uint8_t *memory)
  */
 uint8_t mem_load(uint16_t address, uint8_t* memory)
 {
+    
+    #ifndef NDEBUG
+        printf("Memory read:\n");
+        if(address != 0x0)
+        {
+            printf("0x%x-0x%x\n", address-1, memory[address-1]);
+        }
+        printf("0x%x-0x%x\n", address, memory[address]);
+        if (address != 0xffff)
+        {
+            printf("0x%x-0x%x\n", address+1, memory[address+1]);
+        }
+    #endif
     return memory[address];
 }
 
