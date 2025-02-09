@@ -13,7 +13,7 @@
 #include "cpu/interrupt.h"
 
 
-//#define STEPWISE 0x100 
+//#define STEPWISE 0x214 
 
 #define LEN_2_OPCODES_LEN 16
 #define LEN_3_OPCODES_LEN 8
@@ -52,15 +52,29 @@ void vblank_check(const double s_per_frame, struct timespec *last_time, struct t
 
     if(elapsed_time >= s_per_frame)
     {
-        printf("Executing vblank interrupt: %lf\n", elapsed_time);
         #ifdef STEPWISE
         getchar();
         #endif
-        enter_interrupt(VBLANK, program_counter, stack_pointer, memory);
+        // set vblank in IF
+        memory[0xff0f] = (memory[0xff0f] & 0b11111110) | 1;
         *last_time = *current_time;
     }
 }
 
+
+
+
+void execute_interrupts(bool *IME, uint16_t *program_counter, uint16_t *stack_pointer, uint8_t *memory)
+{
+    if(*IME)
+    {
+        struct i_flags flags = get_i_flags(memory);
+        if(flags.vblank)
+        {
+            enter_interrupt(VBLANK, IME, program_counter, stack_pointer, memory);
+        }
+    }
+}
 
 int main(int argc, char** argv)
 {
@@ -81,6 +95,7 @@ int main(int argc, char** argv)
     uint16_t program_counter = 0x100;
     uint16_t stack_pointer = 0xfffe;
     uint8_t* memory = mem_init();
+    bool IME = true;
 
     read_file_to_mem(file, memory);
     #ifdef STEPWISE
@@ -126,7 +141,7 @@ int main(int argc, char** argv)
         if(len == 1)
         {
             //printf("test\n");
-            exec_1(byte, registers, &program_counter, &stack_pointer, memory);
+            exec_1(byte, registers, &program_counter, &stack_pointer, memory, &IME);
         }else if(len == 2)
         {
             exec_2(byte, memory[program_counter + 1], registers, &program_counter, memory);
@@ -154,7 +169,7 @@ int main(int argc, char** argv)
 
         /*handle interrupts*/
         vblank_check(s_per_frame, &last_time, &current_time, &program_counter, &stack_pointer, memory);
-        
+        execute_interrupts(&IME, &program_counter, &stack_pointer, memory);
     }
     if(file != NULL)
     {

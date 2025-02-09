@@ -98,3 +98,20 @@ void stack_push(uint8_t value, uint16_t *stack_pointer, uint8_t *memory)
     // put value on stack
     memory[*stack_pointer] = value;
 }
+
+
+/*
+ *
+ */
+struct i_flags get_i_flags(uint8_t *memory)
+{
+    bool vblank = memory[0xff0f] & 0b00000001;
+    bool lcd = (memory[0xff0f] >> 1) & 0b00000001;
+    bool time = (memory[0xff0f] >> 2) & 0b00000001;
+    bool serial = (memory[0xff0f] >> 3) & 0b00000001;
+    bool joypad = (memory[0xff0f] >> 4) & 0b00000001;
+
+    struct i_flags flags = {vblank, lcd, time, serial, joypad};
+    return flags;
+
+}

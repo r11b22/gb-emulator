@@ -5,6 +5,7 @@
 #include "cu.h"
 #include "alu.h"
 #include "../libs/binary.h"
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -13,7 +14,7 @@
 #define IN_VERTICAL_RANGE(x, col, lower, upper) ((x-col)&0b00001111) == 0 && (x-col)/16 <= upper && (x-col)/16 >= lower
 #define VERTICAL_INDEX(x, col) ((x-col)/16) 
 
-void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter, uint16_t *stack_pointer, uint8_t* memory)
+void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter, uint16_t *stack_pointer, uint8_t* memory, bool* IME)
 {
     size_t LD_REG_TRANSLATION[6] = {1, 2, 3, 4, 6, 7};
     size_t LD_IM_TRANSLATION[6] = {1, 3, 6, 2, 4, 7};
@@ -302,9 +303,15 @@ void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter, uint1
             uint8_t hi = stack_pop(stack_pointer, memory);
             *program_counter = COMBINE_BYTES(hi, lo);
         }
-    }else if(opcode == 0xd9)
+    }else if(opcode == 0xd9) // reti
     {
-        exit_interrupt(program_counter, stack_pointer, memory);
+        exit_interrupt(IME, program_counter, stack_pointer, memory);
+    }else if(opcode == 0xf3) // di
+    {
+        *IME = false;
+    }else if(opcode == 0xfb) // ei
+    {
+        *IME = true;
     }else
     {
         printf("insturction: 0x%x not implemented for oplength of 1 byte, executing nop\n", opcode);

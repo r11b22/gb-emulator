@@ -17,7 +17,15 @@
 #define IU_ADDR 0xffff
 
 #include <stdint.h>
+#include <stdbool.h>
 
+struct i_flags{
+    bool vblank;
+    bool lcd;
+    bool time;
+    bool serial;
+    bool joypad;
+};
 /*
  * initialize the memory
  * needs to be freed
@@ -43,6 +51,13 @@ uint8_t stack_pop(uint16_t* stack_pointer, uint8_t* memory);
  * pushes a single 8bit value to the stack
  */
 void stack_push(uint8_t value, uint16_t* stack_pointer, uint8_t* memory);
+
+
+/*
+ * get the interrupt flags
+ */
+struct i_flags get_i_flags(uint8_t* memory);
+
 #endif
 
 

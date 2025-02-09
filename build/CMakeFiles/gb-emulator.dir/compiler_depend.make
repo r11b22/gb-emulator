@@ -82,6 +82,7 @@ CMakeFiles/gb-emulator.dir/cpu/interrupt.c.o: /home/joost/Documents/projects/gb-
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h
 
 CMakeFiles/gb-emulator.dir/cpu/memory.c.o: /home/joost/Documents/projects/gb-emulator/cpu/memory.c \
@@ -143,6 +144,7 @@ CMakeFiles/gb-emulator.dir/cpu/memory.c.o: /home/joost/Documents/projects/gb-emu
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
+  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h
 
