@@ -13,7 +13,7 @@
 #include "cpu/interrupt.h"
 
 
-//#define STEPWISE 0x100 
+#define STEPWISE 0x021b 
 
 #define LEN_2_OPCODES_LEN 16
 #define LEN_3_OPCODES_LEN 8
@@ -43,7 +43,7 @@ size_t get_exectution_len(uint8_t opcode)
     return 1;
 }
 
-void vblank_check(const double s_per_frame, struct timespec *last_time, struct timespec *current_time, uint16_t *program_counter, uint16_t *stack_pointer, uint8_t *memory)
+void vblank_check(const size_t s_per_frame, struct timespec *last_time, struct timespec *current_time, uint16_t *program_counter, uint16_t *stack_pointer, uint8_t *memory)
 {
     clock_gettime(CLOCK_MONOTONIC, current_time);
 
@@ -52,20 +52,17 @@ void vblank_check(const double s_per_frame, struct timespec *last_time, struct t
 
     if(elapsed_time >= s_per_frame)
     {
-        printf("Executing vblank interrupt: %lf\n", elapsed_time);
-        #ifdef STEPWISE
-        getchar();
-        #endif
         enter_interrupt(VBLANK, program_counter, stack_pointer, memory);
-        *last_time = *current_time;
+        *last_time = *current_time
     }
 }
 
 
 int main(int argc, char** argv)
 {
-    const double s_per_frame = 1.0/FRAME_RATE;
 
+    const size_t s_per_frame = 1.0/FRAME_RATE;
+    
     char cwd[100];
     getcwd(cwd, sizeof(cwd));
 
@@ -89,24 +86,17 @@ int main(int argc, char** argv)
 
     struct timespec last_time, current_time;
     clock_gettime(CLOCK_MONOTONIC, &last_time);
-
-    #ifdef STEPWISE
-    if(program_counter == STEPWISE)
-    {
-        breaked = true;
-    }
-    #endif
-
     // loop until 0x10 (stop)
     while (memory[program_counter] != 0x10 && file != NULL) {
         
+        /*handle interrupts*/
+        vblank_check(s_per_frame, &last_time, &current_time, &program_counter, &stack_pointer, memory);
 
 
         uint8_t byte = memory[program_counter];
         #ifdef STEPWISE
         if(breaked)
         {
-
             printf("executing instruction: 0x%x, 0x%x, 0x%x at: 0x%x\n", byte, memory[program_counter + 1], memory[program_counter + 2], program_counter);
 
 
@@ -151,9 +141,6 @@ int main(int argc, char** argv)
         printf("\tStack pointer: 0x%x\n", stack_pointer);
         }
         #endif
-
-        /*handle interrupts*/
-        vblank_check(s_per_frame, &last_time, &current_time, &program_counter, &stack_pointer, memory);
         
     }
     if(file != NULL)

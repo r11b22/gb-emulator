@@ -1,4 +1,5 @@
 #include "translator.h"
+#include "interrupt.h"
 #include "memory.h"
 #include "registers.h"
 #include "cu.h"
@@ -301,6 +302,9 @@ void exec_1(uint8_t opcode, uint8_t *registers, uint16_t *program_counter, uint1
             uint8_t hi = stack_pop(stack_pointer, memory);
             *program_counter = COMBINE_BYTES(hi, lo);
         }
+    }else if(opcode == 0xd9)
+    {
+        exit_interrupt(program_counter, stack_pointer, memory);
     }else
     {
         printf("insturction: 0x%x not implemented for oplength of 1 byte, executing nop\n", opcode);

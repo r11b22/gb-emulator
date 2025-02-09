@@ -12,10 +12,17 @@ void enter_interrupt(enum interrupts intr_type, uint16_t *program_counter, uint1
 {
     if(intr_type == VBLANK)
     {
-        // push cpu state to the stack
-        stack_push(LO_HALF(*program_counter), stack_pointer, memory);
-        stack_push(HI_HALF(*program_counter), stack_pointer, memory);
-        *program_counter = VBLANK_LOC;
+        // check for vblank enabled
+        if((memory[0xffff] & 0b00000001) == 0x1)
+        {    
+            // push cpu state to the stack
+            stack_push(LO_HALF((*program_counter) + 1), stack_pointer, memory);
+            stack_push(HI_HALF((*program_counter) + 1), stack_pointer, memory);
+            // set pc
+            *program_counter = VBLANK_LOC;
+        }
+
+        
     }
 }
 
