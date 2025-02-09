@@ -177,6 +177,30 @@ cpu/cu.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/cu.c.s
 .PHONY : cpu/cu.c.s
 
+cpu/interrupt.o: cpu/interrupt.c.o
+.PHONY : cpu/interrupt.o
+
+# target to build an object file
+cpu/interrupt.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/interrupt.c.o
+.PHONY : cpu/interrupt.c.o
+
+cpu/interrupt.i: cpu/interrupt.c.i
+.PHONY : cpu/interrupt.i
+
+# target to preprocess a source file
+cpu/interrupt.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/interrupt.c.i
+.PHONY : cpu/interrupt.c.i
+
+cpu/interrupt.s: cpu/interrupt.c.s
+.PHONY : cpu/interrupt.s
+
+# target to generate assembly for a file
+cpu/interrupt.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gb-emulator.dir/build.make CMakeFiles/gb-emulator.dir/cpu/interrupt.c.s
+.PHONY : cpu/interrupt.c.s
+
 cpu/memory.o: cpu/memory.c.o
 .PHONY : cpu/memory.o
 
@@ -312,6 +336,9 @@ help:
 	@echo "... cpu/cu.o"
 	@echo "... cpu/cu.i"
 	@echo "... cpu/cu.s"
+	@echo "... cpu/interrupt.o"
+	@echo "... cpu/interrupt.i"
+	@echo "... cpu/interrupt.s"
 	@echo "... cpu/memory.o"
 	@echo "... cpu/memory.i"
 	@echo "... cpu/memory.s"
